@@ -6,28 +6,38 @@
     <title>Calculadora Estatística</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
 <body>
-    <div class="container">
-        <h1>Calculadora Estatística</h1>
-        <p>Insira um número:</p>
-        <input type="number" id="numeroInput" required />
-        <button id="adicionarBtn">Adicionar Número</button>
-        <button id="calcularBtn">Calcular Estatísticas</button>
-    </div>
-        
-    <div class="container">
-        <h2>Números Armazenados</h2>
-        <ul id="numerosLista"></ul>
-        <button id="excluirTodosBtn" disabled>Excluir Todos</button>
-    </div>
+    <div class="main-wrapper">
 
-    <div class="container hidden" id="resultados">
-        <h2>Resultados</h2>
-        <p id="media"></p>
-        <p id="mediana"></p>
-        <p id="desvioMedio"></p>
-        <p id="desvioPadrao"></p>
-        <p id="variancia"></p>
-        <button id="resetarBtn">Resetar</button>
+        <div class="top-section">
+            <div class="container">
+                <h1>Calculadora Estatística</h1>
+                <p>Insira um número:</p>
+                <input type="number" id="numeroInput" required />
+                <div class="botoes-input">
+                    <button id="adicionarBtn">Adicionar Número</button>
+                    <button id="calcularBtn">Calcular Estatísticas</button>
+                </div>
+
+            </div>
+                
+            <div class="container">
+                <div class="header-lista">
+                    <h2>Números Armazenados</h2>
+                    <button id="excluirTodosBtn" disabled>Excluir Todos</button>
+                </div>
+                <ul id="numerosLista"></ul>
+            </div>
+        </div>
+
+        <div class="container hidden" id="resultados">
+            <h2>Resultados</h2>
+            <p id="media"></p>
+            <p id="mediana"></p>
+            <p id="desvioMedio"></p>
+            <p id="desvioPadrao"></p>
+            <p id="variancia"></p>
+            <button id="resetarBtn">Resetar</button>
+        </div>
     </div>
 
     <script type="module" src="{{ url_for('static', filename='calculadora.js') }}"></script>

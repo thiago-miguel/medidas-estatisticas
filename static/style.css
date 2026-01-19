@@ -1,3 +1,195 @@
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f5f7fa;
+    color: #333;
+}
+
+/* Wrapper geral */
+.page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 30px;
+}
+
+/* Seção superior */
+.top-section {
+    display: grid;
+    grid-template-columns: 0.8fr 1.6fr; /* esquerda menor, direita maior */
+    margin-bottom: 15px;
+}
+
+/* Containers */
+.container {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    margin: 25px;
+}
+
+/* Altura fixa dos quadros superiores */
+.top-section .container {
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Títulos */
+h1 {
+    margin-bottom: 18px;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+/* Header da lista com título e botão */
+.header-lista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.header-lista h2 {
+    margin-bottom: 0;
+}
+
+/* Input */
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px 0 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #2196F3;
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+}
+
+/* Grupo de botões (input) */
+.botoes-input {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Botões padrão */
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Botões específicos */
+#adicionarBtn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#calcularBtn {
+    background-color: #2196F3;
+    color: white;
+}
+
+#excluirTodosBtn {
+    background-color: #f44336;
+    color: white;
+    padding: 8px 12px;
+    font-size: 13px;
+}
+
+#resetarBtn {
+    background-color: #FF9800;
+    color: white;
+    margin-top: 18px;
+    font-weight: bold;
+}
+
+/* Lista de números */
+#numerosLista {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, auto);
+    gap: 10px;
+    flex-grow: 1;
+}
+
+/* Item da lista */
+#numerosLista li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f1f3f5;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* Botão excluir individual */
+#numerosLista li button {
+    background-color: #e53935;
+    color: white;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* Resultados */
+#resultados {
+    max-width: 500px;
+    margin: 0 auto 15px auto;
+    text-align: center;
+}
+
+#resultados p {
+    margin: 12px 0;
+    font-size: 16px;
+}
+
+#resultados h2 {
+    text-align: center;
+}
+
+/* Hidden */
 .hidden {
     display: none;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+    .top-section {
+        grid-template-columns: 1fr;
+    }
+
+    .top-section .container {
+        height: auto;
+    }
+
+    #numerosLista {
+        grid-template-columns: repeat(2, 1fr);
+        max-height: 260px;
+        overflow-y: auto;
+    }
 }

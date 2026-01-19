@@ -36,8 +36,8 @@ const habilitarInputs = () => {
 };
 
 const adicionarNumero = () => {
-    if (numeros.length >= 20) {
-        alert("Limite de 20 números atingido!");
+    if (numeros.length >= 16) {
+        alert("Limite de 16 números atingido!");
         return;
     }
     
@@ -143,6 +143,7 @@ calcularBtn.addEventListener("click", async () => {
         
         resultadosContainer.classList.remove("hidden");
         desabilitarInputs();
+        excluirTodosBtn.disabled = true;
     } catch (erro) {
         console.error("Erro ao processar requisição:", erro);
         alert(`Erro: ${erro.message}`);
@@ -150,13 +151,32 @@ calcularBtn.addEventListener("click", async () => {
 });
 
 resetarBtn.addEventListener("click", () => {
-    excluirTodosBtn.click();
+    // Limpar array de números
+    numeros.length = 0;
+    
+    // Limpar lista HTML
+    numerosLista.innerHTML = "";
+    
+    // Limpar input
+    numeroInput.value = "";
+    
+    // Atualizar estado dos botões
     atualizarBotaoExcluirTodos();
     atualizarBotaoCalcular();
+    
+    // Ocultar resultados
     resultadosContainer.classList.add("hidden");
+    
+    // Habilitar inputs
     habilitarInputs();
+    
+    // Focar no input
+    numeroInput.focus();
 });
 
 // Inicializar estado dos botões ao carregar a página
 atualizarBotaoExcluirTodos();
 atualizarBotaoCalcular();
+
+// Focar no input ao carregar a página
+numeroInput.focus();
