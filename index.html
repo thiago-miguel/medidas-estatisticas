@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Estatística</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora Estatística</h1>
+        <p>Insira um número:</p>
+        <input type="number" id="numeroInput" required />
+        <button id="adicionarBtn">Adicionar Número</button>
+        <button id="calcularBtn">Calcular Estatísticas</button>
+    </div>
+        
+    <div class="container">
+        <h2>Números Armazenados</h2>
+    </div>
+
+    <div class="container hidden" id="resultados">
+        <h2>Resultados</h2>
+        <p id="media"></p>
+        <p id="mediana"></p>
+        <p id="moda"></p>
+        <p id="desvioMedio"></p>
+        <p id="desvioPadrao"></p>
+        <p id="variancia"></p>
+    </div>
+
+    <script type="module" src="calculadora.js"></script>
+
+</body>
+</html>
