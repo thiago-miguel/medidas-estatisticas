@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Estatística</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
 <body>
     <div class="container">
         <h1>Calculadora Estatística</h1>
@@ -30,7 +29,7 @@
         <p id="variancia"></p>
     </div>
 
-    <script type="module" src="calculadora.js"></script>
+    <script type="module" src="{{ url_for('static', filename='calculadora.js') }}"></script>
 
 </body>
 </html>
