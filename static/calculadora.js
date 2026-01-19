@@ -5,6 +5,7 @@ const resultadosContainer = document.getElementById("resultados");
 const numeroInput = document.getElementById("numeroInput");
 const adicionar = document.getElementById("adicionarBtn");
 const numerosLista = document.getElementById("numerosLista");
+const excluirTodosBtn = document.getElementById("excluirTodosBtn");
 const media = document.getElementById("media");
 const mediana = document.getElementById("mediana");
 const moda = document.getElementById("moda");
@@ -13,6 +14,10 @@ const desvioPadrao = document.getElementById("desvioPadrao");
 const variancia = document.getElementById("variancia");
 
 const numeros = [];
+
+const atualizarBotaoExcluirTodos = () => {
+    excluirTodosBtn.disabled = numeros.length === 0;
+};
 
 const adicionarNumero = () => {
     if (numeros.length >= 20) {
@@ -54,6 +59,7 @@ const adicionarNumero = () => {
         const index = Array.from(numerosLista.children).indexOf(itemLista);
         numeros.splice(index, 1);
         itemLista.remove();
+        atualizarBotaoExcluirTodos();
     });
 
     itemLista.appendChild(btnExcluir);
@@ -62,6 +68,8 @@ const adicionarNumero = () => {
     
     numeroInput.value = "";
     numeroInput.focus();
+    
+    atualizarBotaoExcluirTodos();
 };
 
 adicionar.addEventListener("click", adicionarNumero);
@@ -69,6 +77,12 @@ numeroInput.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
         adicionarNumero();
     }
+});
+
+excluirTodosBtn.addEventListener("click", () => {
+    numeros.length = 0;
+    numerosLista.innerHTML = "";
+    atualizarBotaoExcluirTodos();
 });
 
 calcularBtn.addEventListener("click", async () => {
