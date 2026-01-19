@@ -32,7 +32,7 @@ const desabilitarInputs = () => {
 const habilitarInputs = () => {
     numeroInput.disabled = false;
     adicionar.disabled = false;
-    calcularBtn.disabled = false;
+    atualizarBotaoCalcular();
 };
 
 const adicionarNumero = () => {
