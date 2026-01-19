@@ -1,3 +1,5 @@
+console.log("JS carregado.");
+
 const calcularBtn = document.getElementById("calcularBtn");
 const resultadosContainer = document.getElementById("resultados");
 const numeroInput = document.getElementById("numeroInput");
