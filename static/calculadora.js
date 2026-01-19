@@ -19,6 +19,10 @@ const atualizarBotaoExcluirTodos = () => {
     excluirTodosBtn.disabled = numeros.length === 0;
 };
 
+const atualizarBotaoCalcular = () => {
+    calcularBtn.disabled = numeros.length < 2;
+};
+
 const desabilitarInputs = () => {
     numeroInput.disabled = true;
     adicionar.disabled = true;
@@ -72,6 +76,7 @@ const adicionarNumero = () => {
         numeros.splice(index, 1);
         itemLista.remove();
         atualizarBotaoExcluirTodos();
+        atualizarBotaoCalcular();
     });
 
     itemLista.appendChild(btnExcluir);
@@ -82,6 +87,7 @@ const adicionarNumero = () => {
     numeroInput.focus();
     
     atualizarBotaoExcluirTodos();
+    atualizarBotaoCalcular();
 };
 
 adicionar.addEventListener("click", adicionarNumero);
@@ -95,6 +101,7 @@ excluirTodosBtn.addEventListener("click", () => {
     numeros.length = 0;
     numerosLista.innerHTML = "";
     atualizarBotaoExcluirTodos();
+    atualizarBotaoCalcular();
 });
 
 calcularBtn.addEventListener("click", async () => {
@@ -145,6 +152,11 @@ calcularBtn.addEventListener("click", async () => {
 resetarBtn.addEventListener("click", () => {
     excluirTodosBtn.click();
     atualizarBotaoExcluirTodos();
+    atualizarBotaoCalcular();
     resultadosContainer.classList.add("hidden");
     habilitarInputs();
 });
+
+// Inicializar estado dos botões ao carregar a página
+atualizarBotaoExcluirTodos();
+atualizarBotaoCalcular();
