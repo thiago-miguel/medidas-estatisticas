@@ -103,24 +103,43 @@ calcularBtn.addEventListener("click", async () => {
         return;
     }
 
-    const response = await fetch("/calcular", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ numeros })
-    });
+    try {
+        console.log("Enviando números para cálculo:", numeros);
+        
+        const response = await fetch("/calcular", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ numeros })
+        });
 
-    const dados = await response.json();
+        console.log("Status da resposta:", response.status);
+        
+        if (!response.ok) {
+            const erro = await response.json();
+            console.error("Erro do servidor:", erro);
+            alert(`Erro: ${erro.erro}`);
+            return;
+        }
 
-    media.textContent = `Média: ${dados.media.toFixed(2)}`;
-    mediana.textContent = `Mediana: ${dados.mediana.toFixed(2)}`;
-    desvioMedio.textContent = `Desvio médio: ${dados.desvio_medio.toFixed(2)}`;
-    desvioPadrao.textContent = `Desvio padrão: ${dados.desvio_padrao.toFixed(2)}`;
-    variancia.textContent = `Variância: ${dados.variancia.toFixed(2)}`;
+        const dados = await response.json();
+        console.log("Dados recebidos:", dados);
 
-    resultadosContainer.classList.remove("hidden");
-    desabilitarInputs();
+        media.textContent = `Média: ${dados.media.toFixed(2)}`;
+        mediana.textContent = `Mediana: ${dados.mediana.toFixed(2)}`;
+        desvioMedio.textContent = `Desvio médio: ${dados.desvio_medio.toFixed(2)}`;
+        desvioPadrao.textContent = `Desvio padrão: ${dados.desvio_padrao.toFixed(2)}`;
+        variancia.textContent = `Variância: ${dados.variancia.toFixed(2)}`;
+
+        console.log("Resultados exibidos com sucesso");
+        
+        resultadosContainer.classList.remove("hidden");
+        desabilitarInputs();
+    } catch (erro) {
+        console.error("Erro ao processar requisição:", erro);
+        alert(`Erro: ${erro.message}`);
+    }
 });
 
 resetarBtn.addEventListener("click", () => {
