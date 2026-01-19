@@ -19,14 +19,9 @@ def calcular():
         
         arr = np.array(numeros, dtype=float)
         
-        # Calcular moda usando scipy
-        moda_resultado = stats.mode(arr, keepdims=True)
-        moda = float(moda_resultado.mode[0])
-
         resultados = {
             "media": float(np.mean(arr)),
             "mediana": float(np.median(arr)),
-            "moda": moda,
             "desvio_medio": float(np.mean(np.abs(arr - np.mean(arr)))),
             "desvio_padrao": float(np.std(arr)),
             "variancia": float(np.var(arr)),

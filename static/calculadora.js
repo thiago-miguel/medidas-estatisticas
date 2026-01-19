@@ -9,7 +9,6 @@ const excluirTodosBtn = document.getElementById("excluirTodosBtn");
 const resetarBtn = document.getElementById("resetarBtn");
 const media = document.getElementById("media");
 const mediana = document.getElementById("mediana");
-const moda = document.getElementById("moda");
 const desvioMedio = document.getElementById("desvioMedio");
 const desvioPadrao = document.getElementById("desvioPadrao");
 const variancia = document.getElementById("variancia");
@@ -116,7 +115,6 @@ calcularBtn.addEventListener("click", async () => {
 
     media.textContent = `Média: ${dados.media.toFixed(2)}`;
     mediana.textContent = `Mediana: ${dados.mediana.toFixed(2)}`;
-    moda.textContent = `Moda: ${dados.moda.toFixed(2)}`;
     desvioMedio.textContent = `Desvio médio: ${dados.desvio_medio.toFixed(2)}`;
     desvioPadrao.textContent = `Desvio padrão: ${dados.desvio_padrao.toFixed(2)}`;
     variancia.textContent = `Variância: ${dados.variancia.toFixed(2)}`;
