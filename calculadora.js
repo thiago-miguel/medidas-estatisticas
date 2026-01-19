@@ -43,9 +43,11 @@ const adicionarNumero = () => {
     btnExcluir.textContent = "Excluir";
     btnExcluir.style.marginLeft = "10px";
     btnExcluir.addEventListener("click", () => {
-        numeros.splice(numeros.indexOf(numero), 1);
+        const index = Array.from(numerosLista.children).indexOf(itemLista);
+        numeros.splice(index, 1);
         itemLista.remove();
     });
+
     itemLista.appendChild(btnExcluir);
     
     numerosLista.appendChild(itemLista);
@@ -61,6 +63,26 @@ numeroInput.addEventListener("keypress", (event) => {
     }
 });
 
-calcularBtn.addEventListener("click", () => {
+calcularBtn.addEventListener("click", async () => {
+    if (numeros.length === 0) {
+        alert("Adicione pelo menos um número.");
+        return;
+    }
+
+    const response = await fetch("/calcular", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ numeros })
+    });
+
+    const dados = await response.json();
+
+    document.getElementById("media").textContent = `Média: ${dados.media.toFixed(2)}`;
+    document.getElementById("mediana").textContent = `Mediana: ${dados.mediana.toFixed(2)}`;
+    document.getElementById("variancia").textContent = `Variância: ${dados.variancia.toFixed(2)}`;
+    document.getElementById("desvioPadrao").textContent = `Desvio padrão: ${dados.desvio_padrao.toFixed(2)}`;
+
     resultadosContainer.classList.remove("hidden");
 });
