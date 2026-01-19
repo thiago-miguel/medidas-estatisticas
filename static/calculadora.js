@@ -6,6 +6,7 @@ const numeroInput = document.getElementById("numeroInput");
 const adicionar = document.getElementById("adicionarBtn");
 const numerosLista = document.getElementById("numerosLista");
 const excluirTodosBtn = document.getElementById("excluirTodosBtn");
+const resetarBtn = document.getElementById("resetarBtn");
 const media = document.getElementById("media");
 const mediana = document.getElementById("mediana");
 const moda = document.getElementById("moda");
@@ -17,6 +18,18 @@ const numeros = [];
 
 const atualizarBotaoExcluirTodos = () => {
     excluirTodosBtn.disabled = numeros.length === 0;
+};
+
+const desabilitarInputs = () => {
+    numeroInput.disabled = true;
+    adicionar.disabled = true;
+    calcularBtn.disabled = true;
+};
+
+const habilitarInputs = () => {
+    numeroInput.disabled = false;
+    adicionar.disabled = false;
+    calcularBtn.disabled = false;
 };
 
 const adicionarNumero = () => {
@@ -109,4 +122,12 @@ calcularBtn.addEventListener("click", async () => {
     variancia.textContent = `Variância: ${dados.variancia.toFixed(2)}`;
 
     resultadosContainer.classList.remove("hidden");
+    desabilitarInputs();
+});
+
+resetarBtn.addEventListener("click", () => {
+    excluirTodosBtn.click();
+    atualizarBotaoExcluirTodos();
+    resultadosContainer.classList.add("hidden");
+    habilitarInputs();
 });
