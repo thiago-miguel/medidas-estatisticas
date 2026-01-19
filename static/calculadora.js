@@ -3,6 +3,12 @@ const resultadosContainer = document.getElementById("resultados");
 const numeroInput = document.getElementById("numeroInput");
 const adicionar = document.getElementById("adicionarBtn");
 const numerosLista = document.getElementById("numerosLista");
+const media = document.getElementById("media");
+const mediana = document.getElementById("mediana");
+const moda = document.getElementById("moda");
+const desvioMedio = document.getElementById("desvioMedio");
+const desvioPadrao = document.getElementById("desvioPadrao");
+const variancia = document.getElementById("variancia");
 
 const numeros = [];
 
@@ -79,10 +85,12 @@ calcularBtn.addEventListener("click", async () => {
 
     const dados = await response.json();
 
-    document.getElementById("media").textContent = `Média: ${dados.media.toFixed(2)}`;
-    document.getElementById("mediana").textContent = `Mediana: ${dados.mediana.toFixed(2)}`;
-    document.getElementById("variancia").textContent = `Variância: ${dados.variancia.toFixed(2)}`;
-    document.getElementById("desvioPadrao").textContent = `Desvio padrão: ${dados.desvio_padrao.toFixed(2)}`;
+    media.textContent = `Média: ${dados.media.toFixed(2)}`;
+    mediana.textContent = `Mediana: ${dados.mediana.toFixed(2)}`;
+    moda.textContent = `Moda: ${dados.moda.toFixed(2)}`;
+    desvioMedio.textContent = `Desvio médio: ${dados.desvio_medio.toFixed(2)}`;
+    desvioPadrao.textContent = `Desvio padrão: ${dados.desvio_padrao.toFixed(2)}`;
+    variancia.textContent = `Variância: ${dados.variancia.toFixed(2)}`;
 
     resultadosContainer.classList.remove("hidden");
 });

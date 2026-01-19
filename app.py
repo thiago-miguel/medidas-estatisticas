@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 import numpy as np
+from scipy import stats
 
 app = Flask(__name__)
 
@@ -9,17 +10,32 @@ def index():
 
 @app.route("/calcular", methods=["POST"])
 def calcular():
-    numeros = request.json["numeros"]
-    arr = np.array(numeros)
+    try:
+        numeros = request.json.get("numeros", [])
+        
+        # Validar se a lista não está vazia
+        if not numeros:
+            return jsonify({"erro": "A lista de números não pode estar vazia"}), 400
+        
+        arr = np.array(numeros, dtype=float)
+        
+        # Calcular moda usando scipy
+        moda_resultado = stats.mode(arr, keepdims=True)
+        moda = float(moda_resultado.mode[0])
 
-    resultados = {
-        "media": float(np.mean(arr)),
-        "mediana": float(np.median(arr)),
-        "variancia": float(np.var(arr)),
-        "desvio_padrao": float(np.std(arr))
-    }
+        resultados = {
+            "media": float(np.mean(arr)),
+            "mediana": float(np.median(arr)),
+            "moda": moda,
+            "desvio_medio": float(np.mean(np.abs(arr - np.mean(arr)))),
+            "desvio_padrao": float(np.std(arr)),
+            "variancia": float(np.var(arr)),
+        }
 
-    return jsonify(resultados)
+        return jsonify(resultados)
+    
+    except Exception as e:
+        return jsonify({"erro": f"Erro ao processar dados: {str(e)}"}), 400
 
 if __name__ == "__main__":
     app.run(debug=True)
