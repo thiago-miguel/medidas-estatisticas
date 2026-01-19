@@ -34,7 +34,20 @@ const adicionarNumero = () => {
     
     // Adicionar o número à lista HTML
     const itemLista = document.createElement("li");
-    itemLista.textContent = numero;
+    
+    const span = document.createElement("span");
+    span.textContent = numero;
+    itemLista.appendChild(span);
+    
+    const btnExcluir = document.createElement("button");
+    btnExcluir.textContent = "Excluir";
+    btnExcluir.style.marginLeft = "10px";
+    btnExcluir.addEventListener("click", () => {
+        numeros.splice(numeros.indexOf(numero), 1);
+        itemLista.remove();
+    });
+    itemLista.appendChild(btnExcluir);
+    
     numerosLista.appendChild(itemLista);
     
     numeroInput.value = "";
